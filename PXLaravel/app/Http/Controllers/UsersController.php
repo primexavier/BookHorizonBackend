@@ -11,7 +11,7 @@ class UsersController extends Controller
 {
     public function index(UsersDataTable $dataTable)
     {
-        return $dataTable->render('backend.users.index');
+        return $dataTable->render('users.index');
     }
     /**
      * Store a newly created resource in storage.
@@ -33,9 +33,9 @@ class UsersController extends Controller
         $new->password = Hash::make($request->password);
         $new->level = $request->level;
         if($new->save()){
-            return redirect()->route('backend.users.index');
+            return redirect()->route('users.index');
         }else{
-            return redirect()->route('backend.users.index');
+            return redirect()->route('users.index');
         }
     }
     /**
@@ -45,7 +45,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view("backend.users.add");
+        return view("users.add");
     }
 
     /**
@@ -56,7 +56,7 @@ class UsersController extends Controller
      */
     public function show(User $user)
     {
-        return view("backend.users.detail")->with("users",$user);
+        return view("users.detail")->with("users",$user);
     }
     /**
      * Display the specified resource.
@@ -66,7 +66,7 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
-        return view("backend.users.edit")->with("users",$user);
+        return view("users.edit")->with("users",$user);
     }
     
     public function update(Request $request, User $user){
@@ -80,9 +80,9 @@ class UsersController extends Controller
         $user->email = $request->email;
         $user->level = $request->level;
         if($user->save()){
-            return redirect()->route('backend.member.index');
+            return redirect()->route('member.index');
         }else{
-            return redirect()->route('backend.member.index');
+            return redirect()->route('member.index');
         }
     }
 

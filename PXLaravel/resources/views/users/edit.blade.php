@@ -1,4 +1,4 @@
-@extends('backend.layouts.app')
+@extends('layouts.app')
 
 @section('content')
 <div class="container">
@@ -10,7 +10,7 @@
                         <i class="fa fa-arrow-left" aria-hidden="true"></i></button>
                         &nbsp Users Edit</div>
                 <div class="card-body">
-                    <form method="POST" action="{{route('backend.users.update',$users->id)}}">
+                    <form method="POST" action="{{route('users.update',$users->id)}}">
                         @csrf
                         <div class="card-body">
                             <div class="form-group">

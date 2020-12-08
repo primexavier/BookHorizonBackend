@@ -42,7 +42,22 @@
             </div>
 
             <ul class="c-sidebar-nav">
-                {{ $sidebar ?? '' }}
+                <li class="c-sidebar-nav-title">Menu</li>
+                <li class="c-sidebar-nav-item">
+                    <a class="c-sidebar-nav-link" href="{{route('users.index')}}">
+                      <i class="c-sidebar-nav-icon cil-speedometer"></i> User
+                    </a>
+                </li>
+                <li class="c-sidebar-nav-item">
+                    <a class="c-sidebar-nav-link" href="{{route('book.index')}}">
+                      <i class="c-sidebar-nav-icon cil-speedometer"></i> Book
+                    </a>
+                </li>
+                <li class="c-sidebar-nav-item">
+                    <a class="c-sidebar-nav-link" href="{{route('bank.index')}}">
+                      <i class="c-sidebar-nav-icon cil-speedometer"></i> Bank
+                    </a>
+                </li>
             </ul>
 
             <button class="c-sidebar-minimizer c-class-toggler" type="button" data-target="_parent" data-class="c-sidebar-minimized"></button>

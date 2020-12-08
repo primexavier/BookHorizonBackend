@@ -1,4 +1,4 @@
-@extends('backend.layouts.app')
+@extends('layouts.app')
 
 @section('content')
 <div class="container">
@@ -9,7 +9,7 @@
                     <button class="btn btn-success" onClick="location.href='{{url()->previous()}}'">
                         <i class="fa fa-arrow-left" aria-hidden="true"></i></button>
                         &nbsp Users Create</div>
-                <form method="POST" action="{{route('backend.users.store')}}">
+                <form method="POST" action="{{route('users.store')}}">
                     @csrf
                     <div class="card-body">
                         <div class="form-group">
