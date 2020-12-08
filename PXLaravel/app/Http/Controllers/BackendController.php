@@ -19,7 +19,7 @@ class BackendController extends Controller
 
     public function login()
     {
-        return view('backend.auth.login');
+        return view('auth.login');
     }
 
     public function authenticate(Request $request)
@@ -28,12 +28,12 @@ class BackendController extends Controller
 
         if (Auth::attempt($credentials)) {
             if(Auth::User()->level > 0){
-                return redirect()->intended('/');
+                return redirect("bookhorizonlibrary.com");
             }else{
-                return redirect()->intended('/backend');
+                return redirect()->intended('/');
             }
         }else{
-            return redirect()->intended('backend/login');
+            return redirect()->intended('/login');
         }
     }
     /**

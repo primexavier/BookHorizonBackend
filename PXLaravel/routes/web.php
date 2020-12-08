@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BackendController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,57 +18,52 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
-
-Route::group(['prefix' => 'backend'], function () {
-    Route::group(['middleware' => 'AuthAdmin'], function () {
-        Route::get('/', function ()    {
-            return view('backend.home');            
-        })->name('backend.home');
-        Route::group(['prefix' => 'books'], function () {
-            Route::get('/', 'BookController@index')->name('backend.book.index');
-            Route::get('/create', 'BookController@create')->name('backend.book.create');
-            Route::post('/create', 'BookController@store')->name('backend.book.store');
-            Route::get('/update/{book}', 'BookController@edit')->name('backend.book.edit');
-            Route::post('/update/{book}', 'BookController@update')->name('backend.book.update');
-            Route::get('/detail/{book}', 'BookController@show')->name('backend.book.detail');
-            Route::post('/delete/{book}', 'BookController@delete')->name('backend.book.delete');
-            Route::post('/import', 'BookController@importExcel')->name('backend.book.import');
-            Route::get('/import', 'BookController@importExcel')->name('backend.book.import');
-            Route::get('/import-add', 'BookController@ImportCreate')->name('backend.book.import.add');
-            Route::post('/import-store', 'BookController@ImportStore')->name('backend.book.import.store');
-        });
-        Route::group(['prefix' => 'blogs'], function () {
-            Route::get('/', 'BlogController@index')->name('backend.blog.index');
-            Route::get('/create', 'BlogController@create')->name('backend.blog.create');
-            Route::post('/create', 'BlogController@store')->name('backend.blog.store');
-            Route::get('/update/{blog}', 'BlogController@edit')->name('backend.blog.edit');
-            Route::post('/update/{blog}', 'BlogController@update')->name('backend.blog.update');
-            Route::get('/detail/{blog}', 'BlogController@show')->name('backend.blog.detail');
-            Route::post('/delete/{blog}', 'BlogController@delete')->name('backend.blog.delete');
-        });
-        Route::group(['prefix' => 'members'], function () {
-            Route::get('/', 'MemberController@index')->name('backend.member.index');
-            Route::get('/create', 'MemberController@create')->name('backend.member.create');
-            Route::post('/create', 'MemberController@store')->name('backend.member.store');
-            Route::get('/update/{user}', 'MemberController@edit')->name('backend.member.edit');
-            Route::post('/update/{user}', 'MemberController@update')->name('backend.member.update');
-            Route::get('/detail/{user}', 'MemberController@show')->name('backend.member.detail');
-            Route::post('/delete/{user}', 'MemberController@delete')->name('backend.member.delete');
-        });
-        Route::group(['prefix' => 'users'], function () {
-            Route::get('/', 'UsersController@index')->name('backend.users.index');
-            Route::get('/create', 'UsersController@create')->name('backend.users.create');
-            Route::post('/create', 'UsersController@store')->name('backend.users.store');
-            Route::get('/update/{user}', 'UsersController@edit')->name('backend.users.edit');
-            Route::post('/update/{user}', 'UsersController@update')->name('backend.users.update');
-            Route::get('/detail/{user}', 'UsersController@show')->name('backend.users.detail');
-            Route::post('/delete/{user}', 'UsersController@destroy')->name('backend.users.delete');
-        });
-        Route::group(['prefix' => 'transactions'], function () {
-            Route::get('/', 'TransactionController@index')->name('backend.transactions.index');
+Route::group(['middleware' => 'AuthAdmin'], function () {
+    Route::get('/dashboard', function (){
+        return view('home');
+    })->name('dashboard');
+    Route::group(['prefix' => 'books'], function () {
+        Route::get('/', [BackendController::class, 'index'])->name('book.index');
+        Route::get('/create', [BackendController::class, 'create'])->name('book.create');
+        Route::post('/create', [BackendController::class, 'store'])->name('book.store');
+        Route::get('/update/{book}', [BackendController::class, 'edit'])->name('book.edit');
+        Route::post('/update/{book}', [BackendController::class, 'update'])->name('book.update');
+        Route::get('/detail/{book}', [BackendController::class, 'detail'])->name('book.detail');
+        Route::post('/delete/{book}', [BackendController::class, 'delete'])->name('book.delete');
+        Route::post('/import', [BackendController::class, 'import'])->name('book.import');
+        Route::get('/import', [BackendController::class, 'import'])->name('book.import');
+        Route::get('/import-add', [BackendController::class, 'add'])->name('book.import.add');
+        Route::post('/import-store', [BackendController::class, 'store'])->name('book.import.store');
+    });
+    Route::group(['prefix' => 'blogs'], function () {
+        Route::get('/', 'BlogController@index')->name('backend.blog.index');
+        Route::get('/create', 'BlogController@create')->name('backend.blog.create');
+        Route::post('/create', 'BlogController@store')->name('backend.blog.store');
+        Route::get('/update/{blog}', 'BlogController@edit')->name('backend.blog.edit');
+        Route::post('/update/{blog}', 'BlogController@update')->name('backend.blog.update');
+        Route::get('/detail/{blog}', 'BlogController@show')->name('backend.blog.detail');
+        Route::post('/delete/{blog}', 'BlogController@delete')->name('backend.blog.delete');
+    });
+    Route::group(['prefix' => 'members'], function () {
+        Route::get('/', 'MemberController@index')->name('backend.member.index');
+        Route::get('/create', 'MemberController@create')->name('backend.member.create');
+        Route::post('/create', 'MemberController@store')->name('backend.member.store');
+        Route::get('/update/{user}', 'MemberController@edit')->name('backend.member.edit');
+        Route::post('/update/{user}', 'MemberController@update')->name('backend.member.update');
+        Route::get('/detail/{user}', 'MemberController@show')->name('backend.member.detail');
+        Route::post('/delete/{user}', 'MemberController@delete')->name('backend.member.delete');
+    });
+    Route::group(['prefix' => 'users'], function () {
+        Route::get('/', 'UsersController@index')->name('backend.users.index');
+        Route::get('/create', 'UsersController@create')->name('backend.users.create');
+        Route::post('/create', 'UsersController@store')->name('backend.users.store');
+        Route::get('/update/{user}', 'UsersController@edit')->name('backend.users.edit');
+        Route::post('/update/{user}', 'UsersController@update')->name('backend.users.update');
+        Route::get('/detail/{user}', 'UsersController@show')->name('backend.users.detail');
+        Route::post('/delete/{user}', 'UsersController@destroy')->name('backend.users.delete');
+    });
+    Route::group(['prefix' => 'transactions'], function () {
+        Route::get('/', 'TransactionController@index')->name('backend.transactions.index');
             Route::get('/create', 'TransactionController@create')->name('backend.transactions.create');
             Route::post('/create', 'TransactionController@store')->name('backend.transactions.store');
             Route::get('/update/{transaction}', 'TransactionController@edit')->name('backend.transactions.edit');
@@ -172,9 +168,8 @@ Route::group(['prefix' => 'backend'], function () {
         });
         Route::group(['prefix' => 'setting'], function () {
             Route::get('/', 'SettingController@index')->name('backend.setting.index');
-            Route::post('/update', 'BookController@update')->name('backend.setting.update');
-        });
+        Route::post('/update', 'BookController@update')->name('backend.setting.update');
     });
-    Route::get('/login', 'BackendController@login')->name('backend.login');
-    Route::post('/login', 'BackendController@authenticate')->name('backend.authenticate');
 });
+Route::get('/login', [BackendController::class, 'login'])->name('login');
+Route::post('/login', [BackendController::class, 'authenticate'])->name('authenticate');
