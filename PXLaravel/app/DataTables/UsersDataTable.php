@@ -53,9 +53,13 @@ class UsersDataTable extends DataTable
                     ->minifiedAjax()
                     ->dom('Bfrtip')
                     ->orderBy(1)
-                    ->parameters([
-                        'buttons' => ['create','excel','csv','print'],
-                    ]);
+                    ->buttons(                        
+                        Button::make('create'),
+                        Button::make('print'),
+                        Button::make('reset'),
+                        Button::make('csv')->text('<i class="fas fa-file-csv"></i> CSV'),
+                        Button::make('excel')->text('<i class="fas fa-file-excel"></i> Excel'),
+                    );
     }
 
     /**
