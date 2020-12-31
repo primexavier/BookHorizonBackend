@@ -31,7 +31,7 @@ class MemberController extends Controller
 {
     public function index(MemberDataTable $dataTable)
     {
-        return $dataTable->render('backend.member.index');
+        return $dataTable->render('member.index');
     }
 
     /**
@@ -84,9 +84,9 @@ class MemberController extends Controller
         $new->password = Hash::make($request->password);
         $new->level = 2;
         if($new->save()){
-            return redirect()->route('backend.member.index');
+            return redirect()->route('member.index');
         }else{
-            return redirect()->route('backend.member.index');
+            return redirect()->route('member.index');
         }
     }
 
@@ -98,7 +98,7 @@ class MemberController extends Controller
     */
    public function create(Request $request)
    {
-       return view("backend.member.add");
+       return view("member.add");
    }
 
     /**
@@ -113,12 +113,12 @@ class MemberController extends Controller
         if($softDelete){
             if($softDelete->level == 2){
                 $softDelete->delete();
-                return redirect()->route("backend.member.index");
+                return redirect()->route("member.index");
             }else{                
-                return redirect()->route("backend.member.index");
+                return redirect()->route("member.index");
             }
         }else{
-            return redirect()->route("backend.member.index");
+            return redirect()->route("member.index");
         }
     }    
 
@@ -200,9 +200,9 @@ class MemberController extends Controller
             $newAddress->save();
         }
         if($user->save()){
-            return redirect()->route('backend.member.index');
+            return redirect()->route('member.index');
         }else{
-            return redirect()->route('backend.member.index');
+            return redirect()->route('member.index');
         }
     }
 
@@ -304,7 +304,7 @@ class MemberController extends Controller
      */
     public function show(User $user)
     {
-        return view("backend.member.detail")->with("member",$user);
+        return view("member.detail")->with("member",$user);
     }
 
     /**
@@ -315,7 +315,7 @@ class MemberController extends Controller
      */
     public function edit(User $user)
     {
-        return view("backend.member.edit")->with("member",$user);
+        return view("member.edit")->with("member",$user);
     }
 
     public function becomeMember(User $user)

@@ -29,7 +29,7 @@ class BookController extends Controller
      */
     public function index(BookDataTable $dataTable)
     {
-        return $dataTable->render('backend.book.index');
+        return $dataTable->render('book.index');
     }
 
     /**
@@ -45,7 +45,7 @@ class BookController extends Controller
         $languages = Language::get();
         $genres = Genre::get();
         $categories = Category::get();
-        return view("backend.book.add")
+        return view("book.add")
         ->with("authors",$authors)
         ->with("publishers",$publishers)
         ->with("suppliers",$suppliers)
@@ -169,7 +169,7 @@ class BookController extends Controller
                 $bookGenre->save();
             }                        
         }
-        return redirect()->route("backend.book.index");
+        return redirect()->route("book.index");
     }
 
     /**
@@ -181,7 +181,7 @@ class BookController extends Controller
     public function show(Book $book)
     {
         $bookImages = BookImage::where('book_id',$book->id)->orderByDesc('id')->first();
-        return view("backend.book.detail")
+        return view("book.detail")
         ->with("bookImages",$bookImages)
         ->with("book",$book);
     }
@@ -214,7 +214,7 @@ class BookController extends Controller
         }
         $bookSupplier = Supplier::where("id",$book->supplier_id)->first();
         $bookLanguage = Language::where("id",$book->language_id)->first();
-        return view("backend.book.edit")->with("book",$book)
+        return view("book.edit")->with("book",$book)
         ->with("authors",$authors)
         ->with("publishers",$publishers)
         ->with("suppliers",$suppliers)
@@ -335,7 +335,7 @@ class BookController extends Controller
             }
         }
         if($book->save()){
-            return redirect(route("backend.book.detail",$book->id));
+            return redirect(route("book.detail",$book->id));
         }else{            
             return back();
         }
@@ -364,9 +364,9 @@ class BookController extends Controller
     {
         if($book){
             $book->delete();
-            return redirect()->route("backend.book.index");
+            return redirect()->route("book.index");
         }else{
-            return redirect()->route("backend.book.index");
+            return redirect()->route("book.index");
         }
     }    
 
@@ -379,7 +379,7 @@ class BookController extends Controller
 
     public function ImportCreate()
     {
-        return view('backend.book.import-create');
+        return view('book.import-create');
     }
 
     public function ImportStore(Request $request)

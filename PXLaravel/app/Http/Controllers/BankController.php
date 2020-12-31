@@ -15,7 +15,7 @@ class BankController extends Controller
      */
     public function index(BankDataTable $dataTable)
     {
-        return $dataTable->render('backend.bank.index');
+        return $dataTable->render('bank.index');
     }
 
     /**
@@ -25,7 +25,7 @@ class BankController extends Controller
      */
     public function create()
     {
-        return view("backend.bank.add");
+        return view("bank.add");
     }
 
     /**
@@ -47,7 +47,7 @@ class BankController extends Controller
             $new->photo = $request->file('logo')->getClientOriginalName();
         }
         $new->save();
-        return redirect()->route("backend.bank.index");
+        return redirect()->route("bank.index");
     }
 
     /**
@@ -58,7 +58,7 @@ class BankController extends Controller
      */
     public function show(Bank $bank)
     {
-        return view("backend.bank.detail")->with("bank",$bank);
+        return view("bank.detail")->with("bank",$bank);
     }
 
     /**
@@ -94,9 +94,9 @@ class BankController extends Controller
     {
         if($bank){
             $bank->delete();
-            return redirect()->route("backend.bank.index");
+            return redirect()->route("bank.index");
         }else{
-            return redirect()->route("backend.bank.index");
+            return redirect()->route("bank.index");
         }
     }
 }

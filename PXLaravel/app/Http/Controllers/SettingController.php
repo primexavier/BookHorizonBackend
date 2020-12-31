@@ -15,7 +15,7 @@ class SettingController extends Controller
     public function index()
     {
         $setting = Setting::first();
-        return view("backend.setting.index")
+        return view("setting.index")
         ->with("setting",$setting);
     }
 
@@ -37,7 +37,7 @@ class SettingController extends Controller
      */
     public function store(Request $request)
     {
-        return view("backend.blog.add");
+        return view("blog.add");
     }
 
     /**

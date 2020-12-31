@@ -15,7 +15,7 @@ class CurrencyController extends Controller
      */
     public function index(CurrencyDataTable $dataTable)
     {
-        return $dataTable->render('backend.currency.index');
+        return $dataTable->render('currency.index');
     }
 
     /**
@@ -25,7 +25,7 @@ class CurrencyController extends Controller
      */
     public function create()
     {
-        return view("backend.currency.add");
+        return view("currency.add");
     }
 
     /**
@@ -50,7 +50,7 @@ class CurrencyController extends Controller
             $new->photo = $request->file('logo')->getClientOriginalName();
         }
         $new->save();
-        return redirect()->route("backend.currency.index");
+        return redirect()->route("currency.index");
     }
 
     /**
@@ -61,7 +61,7 @@ class CurrencyController extends Controller
      */
     public function show(Currency $currency)
     {
-        return view("backend.currency.detail")->with("currency",$currency);
+        return view("currency.detail")->with("currency",$currency);
     }
 
     /**
@@ -97,9 +97,9 @@ class CurrencyController extends Controller
     {
         if($currency){
             $currency->delete();
-            return redirect()->route("backend.currency.index");
+            return redirect()->route("currency.index");
         }else{
-            return redirect()->route("backend.currency.index");
+            return redirect()->route("currency.index");
         }
     }
 }

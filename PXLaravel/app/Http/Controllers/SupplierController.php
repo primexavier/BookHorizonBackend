@@ -15,7 +15,7 @@ class SupplierController extends Controller
      */
     public function index(SupplierDataTable $dataTable)
     {
-        return $dataTable->render('backend.supplier.index');
+        return $dataTable->render('supplier.index');
     }
 
     /**
@@ -25,7 +25,7 @@ class SupplierController extends Controller
      */
     public function create()
     {
-        return view("backend.supplier.add");
+        return view("supplier.add");
     }
 
     /**
@@ -43,7 +43,7 @@ class SupplierController extends Controller
         $new->name = $request->name;
         $new->description = $request->desc;
         $new->save();
-        return redirect()->route("backend.supplier.index");
+        return redirect()->route("supplier.index");
     }
 
     /**
@@ -54,7 +54,7 @@ class SupplierController extends Controller
      */
     public function show(Supplier $supplier)
     {
-        return view("backend.supplier.detail")->with("supplier",$supplier);
+        return view("supplier.detail")->with("supplier",$supplier);
     }
 
     /**

@@ -17,7 +17,7 @@ class GenreController extends Controller
      */
     public function index(GenreDataTable $dataTable)
     {
-        return $dataTable->render('backend.genre.index');
+        return $dataTable->render('genre.index');
     }
 
 
@@ -28,7 +28,7 @@ class GenreController extends Controller
      */
     public function create()
     {
-        return view("backend.genre.add");
+        return view("genre.add");
     }
 
     /**
@@ -47,7 +47,7 @@ class GenreController extends Controller
         $new->parent_id = $request->parent;
         $new->save();
         
-        return redirect()->route("backend.genre.index");
+        return redirect()->route("genre.index");
     }
 
     /**
@@ -59,7 +59,7 @@ class GenreController extends Controller
     public function show(Genre $genre)
     {
         $genreBook = BookGenre::where('genre_id',$genre->id)->get();
-        return view("backend.genre.detail")
+        return view("genre.detail")
         ->with("bookGenres",$genreBook)
         ->with("genre",$genre);
     }
@@ -72,7 +72,7 @@ class GenreController extends Controller
      */
     public function edit(Genre $genre)
     {
-        return view("backend.genre.edit")
+        return view("genre.edit")
         ->with("genre",$genre);
     }
 
@@ -94,7 +94,7 @@ class GenreController extends Controller
         $genre->parent_id = $request->parent;
         $genre->save();
         
-        return redirect()->route("backend.genre.index");
+        return redirect()->route("genre.index");
     }
 
     /**

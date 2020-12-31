@@ -15,7 +15,7 @@ class MembershipController extends Controller
      */
     public function index(MembershipDataTable $dataTable)
     {
-        return $dataTable->render('backend.membership.index');
+        return $dataTable->render('membership.index');
     }
 
     /**
@@ -25,7 +25,7 @@ class MembershipController extends Controller
      */
     public function create()
     {
-        return view("backend.membership.add");
+        return view("membership.add");
     }
 
     /**
@@ -49,9 +49,9 @@ class MembershipController extends Controller
         $new->buy_discount = $request->buy_discount;
         $new->description = $request->desc;
         if($new->save()){
-            return redirect()->route('backend.membership.index');
+            return redirect()->route('membership.index');
         }else{
-            return redirect()->route('backend.membership.index');
+            return redirect()->route('membership.index');
         }
     }
 
@@ -63,7 +63,7 @@ class MembershipController extends Controller
      */
     public function show(Membership $membership)
     {
-        return view("backend.membership.detail")->with("membership",$membership);
+        return view("membership.detail")->with("membership",$membership);
     }
 
     /**
@@ -74,7 +74,7 @@ class MembershipController extends Controller
      */
     public function edit(Membership $membership)
     {
-        return view("backend.membership.edit")->with("membership",$membership);
+        return view("membership.edit")->with("membership",$membership);
     }
 
     /**
@@ -99,9 +99,9 @@ class MembershipController extends Controller
         $membership->rent_discount = $request->rent_discount;
         $membership->buy_discount = $request->buy_discount;
         if($membership->save()){
-            return redirect()->route('backend.membership.index');
+            return redirect()->route('membership.index');
         }else{
-            return redirect()->route('backend.membership.index');
+            return redirect()->route('membership.index');
         }
     }
 
@@ -115,9 +115,9 @@ class MembershipController extends Controller
     {
         if($membership){
             $membership->delete();
-            return redirect()->route("backend.membership.index");
+            return redirect()->route("membership.index");
         }else{                
-            return redirect()->route("backend.membership.index");
+            return redirect()->route("membership.index");
         }
     }
 }

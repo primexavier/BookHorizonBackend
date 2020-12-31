@@ -16,7 +16,7 @@ class BlogController extends Controller
      */
     public function index(BlogDataTable $dataTable)
     {
-        return $dataTable->render('backend.blog.index');
+        return $dataTable->render('blog.index');
     }
 
     /**
@@ -26,7 +26,7 @@ class BlogController extends Controller
      */
     public function create()
     {
-        return view("backend.blog.add");
+        return view("blog.add");
     }
 
     /**
@@ -47,7 +47,7 @@ class BlogController extends Controller
         $new->user_id = Auth::user()->id;
         $new->save();
 
-        return redirect()->route('backend.blog.index');;
+        return redirect()->route('blog.index');;
     }
 
     /**
@@ -58,7 +58,7 @@ class BlogController extends Controller
      */
     public function show(Blog $blog)
     {
-        return view("backend.blog.detail")->with("blog",$blog);
+        return view("blog.detail")->with("blog",$blog);
     }
 
     /**
@@ -105,9 +105,9 @@ class BlogController extends Controller
     {
         if($blog){
             $blog->delete();
-            return redirect()->route("backend.blog.index");
+            return redirect()->route("blog.index");
         }else{
-            return redirect()->route("backend.blog.index");
+            return redirect()->route("blog.index");
         }
     }    
 }

@@ -24,7 +24,7 @@ class TransactionController extends Controller
      */
     public function index(TransactionDataTable $dataTable)
     {
-        return $dataTable->render("backend.transaction.index");
+        return $dataTable->render("transaction.index");
     }
 
     /**
@@ -34,7 +34,7 @@ class TransactionController extends Controller
      */
     public function create()
     {
-        return view("backend.transaction.add");
+        return view("transaction.add");
     }
 
     /**
@@ -45,7 +45,7 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
-        return view("backend.transaction.add");
+        return view("transaction.add");
     }
 
     /**
@@ -60,7 +60,7 @@ class TransactionController extends Controller
         $transactionBook = TransactionBook::where('transaction_id',$transaction->id)->get();
         $transactionMember = TransactionMembership::where('transaction_id',$transaction->id)->get();
         $transactionShipping = TransactionShipping::where('transaction_id',$transaction->id)->first();
-        return view("backend.transaction.detail")
+        return view("transaction.detail")
         ->with('transaction',$transaction)
         ->with('transactionBook',$transactionBook)
         ->with('transactionMember',$transactionMember)
@@ -77,7 +77,7 @@ class TransactionController extends Controller
      */
     public function edit(Transaction $transaction)
     {
-        return view("backend.transaction.edit");
+        return view("transaction.edit");
     }
 
     /**
@@ -101,7 +101,7 @@ class TransactionController extends Controller
     public function destroy(Transaction $transaction)
     {
         $transaction->delete();
-        return redirect()->route('backend.transactions.index');
+        return redirect()->route('transactions.index');
     }
 
     public function approveReceipt(Transaction $transaction){
@@ -110,7 +110,7 @@ class TransactionController extends Controller
         $bill->save();
         $transaction->status = 4;
         $transaction->save();
-        return redirect()->route('backend.transactions.detail',$transaction->id);
+        return redirect()->route('transactions.detail',$transaction->id);
     }
 
     public function addShipping(Request $request, Transaction $transaction){
@@ -123,7 +123,7 @@ class TransactionController extends Controller
         $transaction->status = 5;
         $transaction->save();
         
-        return redirect()->route('backend.transactions.detail',$transaction->id);
+        return redirect()->route('transactions.detail',$transaction->id);
     }
 
     public function finishTransaction(Transaction $transaction){
@@ -160,7 +160,7 @@ class TransactionController extends Controller
         }
         $transaction->status = 6;
         $transaction->save();
-        return redirect()->route('backend.transactions.detail',$transaction->id);
+        return redirect()->route('transactions.detail',$transaction->id);
     }
 
     public function declineReceipt (Transaction $transaction){         
@@ -170,6 +170,6 @@ class TransactionController extends Controller
         $bills->save();        
         $transaction->status = 1;
         $transaction->save();
-        return redirect()->route('backend.transactions.detail',$transaction->id);
+        return redirect()->route('transactions.detail',$transaction->id);
     }
 }

@@ -16,7 +16,7 @@ class CategoryController extends Controller
      */
     public function index(CategoryDataTable $dataTable)
     {
-        return $dataTable->render('backend.category.index');
+        return $dataTable->render('category.index');
     }
 
     /**
@@ -26,7 +26,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view("backend.category.add");
+        return view("category.add");
     }
 
     /**
@@ -44,7 +44,7 @@ class CategoryController extends Controller
         $new->name = $request->name;
         $new->description = $request->desc;
         $new->save();
-        return redirect()->route("backend.category.index");
+        return redirect()->route("category.index");
     }
 
     /**
@@ -56,7 +56,7 @@ class CategoryController extends Controller
     public function show(Category $category)
     {
         $bookCategories = BookCategory::where('category_id',$category->id)->get();
-        return view("backend.category.detail")
+        return view("category.detail")
         ->with("bookCategories",$bookCategories)
         ->with("category",$category);
     }
@@ -69,7 +69,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view("backend.category.edit")->with('category',$category);
+        return view("category.edit")->with('category',$category);
     }
 
     /**
@@ -89,7 +89,7 @@ class CategoryController extends Controller
         $category->name = $request->name;
         $category->description = $request->desc;
         $category->save();
-        return redirect()->route("backend.category.index");
+        return redirect()->route("category.index");
     }
 
     /**
@@ -102,9 +102,9 @@ class CategoryController extends Controller
     {
         if($category){
             $category->delete();
-            return redirect()->route("backend.category.index");
+            return redirect()->route("category.index");
         }else{
-            return redirect()->route("backend.category.index");
+            return redirect()->route("category.index");
         }
     }
 }

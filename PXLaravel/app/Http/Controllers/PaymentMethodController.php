@@ -15,7 +15,7 @@ class PaymentMethodController extends Controller
      */
     public function index(PaymentMethodDataTable $dataTable)
     {
-        return $dataTable->render('backend.paymentMethod.index');
+        return $dataTable->render('paymentMethod.index');
     }
 
     /**
@@ -25,7 +25,7 @@ class PaymentMethodController extends Controller
      */
     public function create()
     {
-        return view("backend.paymentMethod.add");
+        return view("paymentMethod.add");
     }
 
     /**
@@ -43,9 +43,9 @@ class PaymentMethodController extends Controller
         $new->name = $request->name;
         $new->description = $request->desc;
         if($new->save()){
-            return redirect()->route('backend.paymentMethod.index');
+            return redirect()->route('paymentMethod.index');
         }else{
-            return redirect()->route('backend.paymentMethod.index');
+            return redirect()->route('paymentMethod.index');
         }
     }
 

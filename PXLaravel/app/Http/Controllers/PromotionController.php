@@ -15,7 +15,7 @@ class PromotionController extends Controller
      */
     public function index(PromotionDataTable $dataTable)
     {
-        return $dataTable->render('backend.promotion.index');
+        return $dataTable->render('promotion.index');
     }
 
     /**
@@ -25,7 +25,7 @@ class PromotionController extends Controller
      */
     public function create()
     {
-        return view("backend.promotion.add");
+        return view("promotion.add");
     }
 
     /**
@@ -55,9 +55,9 @@ class PromotionController extends Controller
         $new->total = $request->promotion_total;
         $new->description = $request->desc;
         if($new->save()){
-            return redirect()->route('backend.promotion.index');
+            return redirect()->route('promotion.index');
         }else{
-            return redirect()->route('backend.promotion.index');
+            return redirect()->route('promotion.index');
         }
     }
 
@@ -69,7 +69,7 @@ class PromotionController extends Controller
      */
     public function show(Promotion $promotion)
     {
-        return view("backend.promotion.detail")->with("promotion",$promotion);
+        return view("promotion.detail")->with("promotion",$promotion);
     }
 
     /**
@@ -80,7 +80,7 @@ class PromotionController extends Controller
      */
     public function edit(Promotion $promotion)
     {
-        return view("backend.promotion.edit")->with("promotion",$promotion);
+        return view("promotion.edit")->with("promotion",$promotion);
     }
 
     /**
@@ -105,9 +105,9 @@ class PromotionController extends Controller
     {
         if($promotion){
             $promotion->delete();
-            return redirect()->route("backend.promotion.index");
+            return redirect()->route("promotion.index");
         }else{                
-            return redirect()->route("backend.promotion.index");
+            return redirect()->route("promotion.index");
         }
     }
 }

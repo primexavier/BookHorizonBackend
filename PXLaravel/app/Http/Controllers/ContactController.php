@@ -55,7 +55,7 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        return view("backend.blog.add");
+        return view("blog.add");
     }
 
     /**

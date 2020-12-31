@@ -17,7 +17,7 @@ class StockController extends Controller
      */
     public function index(StockDataTable $dataTable)
     {
-        return $dataTable->render('backend.stock.index');
+        return $dataTable->render('stock.index');
     }
 
     /**
@@ -27,7 +27,7 @@ class StockController extends Controller
      */
     public function create()
     {
-        return view("backend.stock.add");
+        return view("stock.add");
     }
 
     /**
@@ -54,9 +54,9 @@ class StockController extends Controller
         $new->quantity = $request->quantity;
         $new->description = $request->desc;
         if($new->save()){
-            return redirect()->route('backend.stock.index');
+            return redirect()->route('stock.index');
         }else{
-            return redirect()->route('backend.stock.index');
+            return redirect()->route('stock.index');
         }
     }
 

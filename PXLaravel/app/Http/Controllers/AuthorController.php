@@ -15,7 +15,7 @@ class AuthorController extends Controller
      */
     public function index(AuthorDataTable $dataTable)
     {
-        return $dataTable->render('backend.author.index');
+        return $dataTable->render('author.index');
     }
 
     /**
@@ -25,7 +25,7 @@ class AuthorController extends Controller
      */
     public function create()
     {
-        return view("backend.author.add");
+        return view("author.add");
     }
 
     /**
@@ -43,7 +43,7 @@ class AuthorController extends Controller
         $new->name = $request->name;
         $new->save();
         
-        return redirect()->route("backend.author.index");
+        return redirect()->route("author.index");
     }
 
     /**
@@ -54,7 +54,7 @@ class AuthorController extends Controller
      */
     public function show(Author $author)
     {
-        return view("backend.author.detail")->with("author",$author);
+        return view("author.detail")->with("author",$author);
     }
 
     /**
