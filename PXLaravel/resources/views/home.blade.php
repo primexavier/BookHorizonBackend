@@ -52,10 +52,9 @@
                                 </div>
                                 <div class="pl-3">
                                     <div class="mb-2">
-                                        <a href="https://laracasts.com" class="h5 font-weight-bolder text-decoration-none text-dark">Laracasts</a>
+                                        <a href="https://laracasts.com" class="h5 font-weight-bolder text-decoration-none text-dark">Sales</a>
                                     </div>
                                     <p class="text-muted">
-                                        Laracasts offers thousands of video tutorials on Laravel, PHP, and JavaScript development. Check them out, see for yourself, and massively level up your development skills in the process.
                                     </p>
                                     <a href="https://laravel.com/docs" class="text-decoration-none">
                                         <div class="mt-3 d-flex align-content-center font-weight-bold text-primary">
