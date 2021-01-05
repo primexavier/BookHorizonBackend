@@ -33,6 +33,7 @@
 
         <!-- Scripts -->
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.js" defer></script>
+        <link href="/fontawwesome/css/all.css" rel="stylesheet"> <!--load all styles -->
     </head>
     <body class="c-app">
         <div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show" id="sidebar">
@@ -47,17 +48,22 @@
                 <li class="c-sidebar-nav-title">Menu</li>
                 <li class="c-sidebar-nav-item">
                     <a class="c-sidebar-nav-link" href="{{route('users.index')}}">
-                      <i class="c-sidebar-nav-icon cil-speedometer"></i> User
+                      <i class="fas fa-user"></i> &nbsp Users
                     </a>
                 </li>
                 <li class="c-sidebar-nav-item">
                     <a class="c-sidebar-nav-link" href="{{route('book.index')}}">
-                      <i class="c-sidebar-nav-icon cil-speedometer"></i> Book
+                      <i class="fas fa-book"></i> &nbsp Books
                     </a>
                 </li>
                 <li class="c-sidebar-nav-item">
                     <a class="c-sidebar-nav-link" href="{{route('bank.index')}}">
-                      <i class="c-sidebar-nav-icon cil-speedometer"></i> Bank
+                        <i class="fas fa-money-check-alt"></i> &nbsp Bank
+                    </a>
+                </li>
+                <li class="c-sidebar-nav-item">
+                    <a class="c-sidebar-nav-link" href="{{route('supplier.index')}}">
+                    <i class="fas fa-boxes"></i> &nbsp Supplier
                     </a>
                 </li>
             </ul>
