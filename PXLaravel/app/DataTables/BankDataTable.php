@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Model\Bank;
+use App\Models\Bank;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
@@ -21,9 +21,9 @@ class BankDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('action', '<a href="{{route(\'backend.bank.detail\',$id)}}" class="btn btn-info" style="color:white"><i class="fas fa-info"></i></a> 
-            <a href="{{route(\'backend.bank.update\',$id)}}" style="color:white" class="btn btn-success"><i class="fas fa-edit"></i></a> 
-            <form method="post" action="{{route(\'backend.bank.delete\',$id)}}" style="display:inline-block">
+            ->addColumn('action', '<a href="{{route(\'bank.detail\',$id)}}" class="btn btn-info" style="color:white"><i class="fas fa-info"></i></a> 
+            <a href="{{route(\'bank.update\',$id)}}" style="color:white" class="btn btn-success"><i class="fas fa-edit"></i></a> 
+            <form method="post" action="{{route(\'bank.delete\',$id)}}" style="display:inline-block">
                 @csrf
                 <button type="submit" style="color:white" class="btn btn-danger"><i class="fas fa-trash"></i></button>
             </form>');
