@@ -25,13 +25,8 @@ use App\Http\Controllers\UsersController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return redirect()->route('dashboard');
-});
-
 Route::group(['middleware' => 'AuthAdmin'], function () {
-    Route::get('/dashboard', function (){
+    Route::get('/', function (){
         return view('home');
     })->name('dashboard');
     Route::group(['prefix' => 'books'], function () {

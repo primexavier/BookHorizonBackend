@@ -24,8 +24,12 @@
         <meta name="msapplication-TileColor" content="#ffffff">
         <meta name="msapplication-TileImage" content="/assets/favicon/ms-icon-144x144.png">
 
-        <!-- Styles -->
-        <link rel="stylesheet" href="{{ mix('css/core-ui.css') }}">
+        <!-- Icons-->
+        <link href="{{ asset('backend/css/free.min.css') }}" rel="stylesheet"> <!-- icons -->
+        <link href="{{ asset('backend/css/flag-icon.min.css') }}" rel="stylesheet"> <!-- icons -->
+ 
+        <!-- Main styles for this application-->
+        <link href="{{ asset('backend/css/style.css') }}" rel="stylesheet">
 
         @livewireStyles
         
@@ -33,171 +37,42 @@
 
         <!-- Scripts -->
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.js" defer></script>
-        <link href="/fontawwesome/css/all.css" rel="stylesheet"> <!--load all styles -->
+        <link href="/fontawesome/css/all.css" rel="stylesheet"> <!--load all styles -->
+        <link href="{{ asset('backend/css/coreui-chartjs.css') }}" rel="stylesheet">
+
     </head>
-    <body class="c-app">
+    <body class="c-app">        
         <div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show" id="sidebar">
-            <div class="c-sidebar-brand">
-                <a href="/">
-                    <x-jet-application-mark class="c-sidebar-brand-minimized" width="36" />
-                    <x-jet-application-mark class="c-sidebar-brand-full" width="36" />
-                </a>
+            @include('layouts.nav-builder')
+
+            @include('layouts.header')
+
+            <div class="c-body">
+                <main class="c-main">
+                    <div class="container">
+                        <div class="row fade-in">
+                            <div class="col">
+                                {{ $slot }}
+                            </div>
+
+                            @if (isset($aside))
+                                <div class="col-lg-3">
+                                    {{ $aside ?? '' }}
+                                </div>
+                            @endif
+                        </div>
+                    </div>
+                </main>
+                @include('layouts.footer')
             </div>
 
-            <ul class="c-sidebar-nav">
-                <li class="c-sidebar-nav-title">Menu</li>
-                <li class="c-sidebar-nav-item">
-                    <a class="c-sidebar-nav-link" href="{{route('users.index')}}">
-                      <i class="fas fa-user"></i> &nbsp Users
-                    </a>
-                </li>
-                <li class="c-sidebar-nav-item">
-                    <a class="c-sidebar-nav-link" href="{{route('book.index')}}">
-                      <i class="fas fa-book"></i> &nbsp Books
-                    </a>
-                </li>
-                <li class="c-sidebar-nav-item">
-                    <a class="c-sidebar-nav-link" href="{{route('bank.index')}}">
-                        <i class="fas fa-money-check-alt"></i> &nbsp Bank
-                    </a>
-                </li>
-                <li class="c-sidebar-nav-item">
-                    <a class="c-sidebar-nav-link" href="{{route('supplier.index')}}">
-                    <i class="fas fa-boxes"></i> &nbsp Supplier
-                    </a>
-                </li>
-            </ul>
-
-            <button class="c-sidebar-minimizer c-class-toggler" type="button" data-target="_parent" data-class="c-sidebar-minimized"></button>
-        </div>
-        <div class="c-wrapper">
-            <header class="c-header c-header-light c-header-fixed c-header-with-subheader">
-                <button class="c-header-toggler c-class-toggler d-lg-none mr-auto" type="button" data-target="#sidebar" data-class="c-sidebar-show">
-                    <span class="c-header-toggler-icon"></span>
-                </button>
-
-                <button class="c-header-toggler c-class-toggler ml-3 d-md-down-none" type="button" data-target="#sidebar" data-class="c-sidebar-lg-show" responsive="true">
-                    <span class="c-header-toggler-icon"></span>
-                </button>
-
-                <ul class="c-header-nav d-md-down-none">
-                    <li class="c-header-nav-item px-3">
-                        <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                            {{ __('Dashboard') }}
-                        </x-jet-nav-link>
-                    </li>
-                </ul>
-
-                <ul class="c-header-nav ml-auto mr-4">
-                    <!-- Authentication Links -->
-                    @auth
-                        <x-jet-dropdown id="navbarDropdown">
-                            <x-slot name="trigger">
-                                @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
-                                    <div class="c-avatar">
-                                        <img class="c-avatar-img" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
-                                    </div>
-                                @else
-                                    {{ Auth::user()->name }}
-                                @endif
-                            </x-slot>
-
-                            <x-slot name="content">
-                                <div class="dropdown-header bg-light py-2">
-                                    <strong>{{ __('Manage Account') }}</strong>
-                                </div>
-
-                                <x-jet-dropdown-link href="{{ route('profile.show') }}">
-                                    {{ __('Profile') }}
-                                </x-jet-dropdown-link>
-
-                                @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
-                                    <x-jet-dropdown-link href="{{ route('api-tokens.index') }}">
-                                        {{ __('API Tokens') }}
-                                    </x-jet-dropdown-link>
-                                @endif
-
-                                @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
-                                    <h6 class="dropdown-header bg-light py-2">
-                                        <strong>{{ __('Manage Team') }}</strong>
-                                    </h6>
-
-                                    <!-- Team Settings -->
-                                    <x-jet-dropdown-link href="{{ route('teams.show', Auth::user()->currentTeam->id) }}">
-                                        {{ __('Team Settings') }}
-                                    </x-jet-dropdown-link>
-
-                                    @can('create', Laravel\Jetstream\Jetstream::newTeamModel())
-                                        <x-jet-dropdown-link href="{{ route('teams.create') }}">
-                                            {{ __('Create New Team') }}
-                                        </x-jet-dropdown-link>
-                                    @endcan
-
-                                    <!-- Team Switcher -->
-                                    <h6 class="dropdown-header bg-light py-2">
-                                        <strong>{{ __('Switch Teams') }}</strong>
-                                    </h6>
-
-                                    @foreach (Auth::user()->allTeams() as $team)
-                                        <x-jet-switchable-team :team="$team" />
-                                    @endforeach
-                                @endif
-
-                                <hr class="dropdown-divider">
-
-                                <!-- Authentication -->
-                                <x-jet-dropdown-link href="{{ route('logout') }}"
-                                                     onclick="event.preventDefault();
-                                 document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
-                                </x-jet-dropdown-link>
-                                <form method="POST" id="logout-form" action="{{ route('logout') }}">
-                                    @csrf
-                                </form>
-                            </x-slot>
-                        </x-jet-dropdown>
-                    @endauth
-                </ul>
-
-                <div class="c-subheader px-3 py-3">
-                    <div class="container">
-                        {{ $header }}
-                    </div>
-                </div>
-            </header>
-
-          <div class="c-body">
-            <main class="c-main">
-
-              <div class="container">
-                  <div class="row fade-in">
-                      <div class="col">
-                          {{ $slot }}
-                      </div>
-
-                      @if (isset($aside))
-                          <div class="col-lg-3">
-                              {{ $aside ?? '' }}
-                          </div>
-                      @endif
-                  </div>
-              </div>
-
-            </main>
-
-            <footer class="c-footer">
-              <div>
-                  <a href="https://jetstream.laravel.com/1.x/introduction.html">Jetstream</a> © 2020 Laravel.
-              </div>
-              <div class="ml-auto">Powered by&nbsp;<a href="https://coreui.io/">CoreUI</a></div>
-            </footer>
-          </div>
         </div>
 
         @stack('modals')
 
-        <script src="{{ mix('js/app.js') }}"></script>
-        <script src="{{ mix('js/core-ui.js') }}"></script>
+        <!-- CoreUI and necessary plugins-->
+        <script src="{{ asset('backend/js/coreui.bundle.min.js') }}"></script>
+        <script src="{{ asset('backend/js/coreui-utils.js') }}"></script>
         @livewireScripts
         @stack('scripts')
     </body>
