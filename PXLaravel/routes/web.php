@@ -14,6 +14,7 @@ use App\Http\Controllers\StockController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\BookController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,17 +31,17 @@ Route::group(['middleware' => 'AuthAdmin'], function () {
         return view('home');
     })->name('dashboard');
     Route::group(['prefix' => 'books'], function () {
-        Route::get('/', [BackendController::class, 'index'])->name('book.index');
-        Route::get('/create', [BackendController::class, 'create'])->name('book.create');
-        Route::post('/create', [BackendController::class, 'store'])->name('book.store');
-        Route::get('/update/{book}', [BackendController::class, 'edit'])->name('book.edit');
-        Route::post('/update/{book}', [BackendController::class, 'update'])->name('book.update');
-        Route::get('/detail/{book}', [BackendController::class, 'detail'])->name('book.detail');
-        Route::post('/delete/{book}', [BackendController::class, 'delete'])->name('book.delete');
-        Route::post('/import', [BackendController::class, 'import'])->name('book.import');
-        Route::get('/import', [BackendController::class, 'import'])->name('book.import');
-        Route::get('/import-add', [BackendController::class, 'add'])->name('book.import.add');
-        Route::post('/import-store', [BackendController::class, 'store'])->name('book.import.store');
+        Route::get('/', [BookController::class, 'index'])->name('book.index');
+        Route::get('/create', [BookController::class, 'create'])->name('book.create');
+        Route::post('/create', [BookController::class, 'store'])->name('book.store');
+        Route::get('/update/{book}', [BookController::class, 'edit'])->name('book.edit');
+        Route::post('/update/{book}', [BookController::class, 'update'])->name('book.update');
+        Route::get('/detail/{book}', [BookController::class, 'detail'])->name('book.detail');
+        Route::post('/delete/{book}', [BookController::class, 'delete'])->name('book.delete');
+        Route::post('/import', [BookController::class, 'import'])->name('book.import');
+        Route::get('/import', [BookController::class, 'import'])->name('book.import');
+        Route::get('/import-add', [BookController::class, 'add'])->name('book.import.add');
+        Route::post('/import-store', [BookController::class, 'store'])->name('book.import.store');
     });
     Route::group(['prefix' => 'blogs'], function () {
         Route::get('/', [BlogController::class, 'index'])->name('blog.index');
