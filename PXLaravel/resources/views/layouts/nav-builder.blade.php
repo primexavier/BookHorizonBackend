@@ -5,48 +5,48 @@
         <ul class="c-sidebar-nav">
             <li class="c-sidebar-nav-title">BookHorizon</li>
             <li class="c-sidebar-nav-item">
-                <a class="c-sidebar-nav-link" href="/">
+                <a class="c-sidebar-nav-link" href="{{route('dashboard')}}">
                     <i class="c-sidebar-nav-icon cil-speedometer"></i> Dashboard
                 </a>
             </li>
             <li class="c-sidebar-nav-item">
-                <a class="c-sidebar-nav-link" href="/books/">
+                <a class="c-sidebar-nav-link" href="{{route('book.index')}}">
                     <i class="c-sidebar-nav-icon cil-speedometer"></i> Book
                     <span class="badge badge-primary">NEW</span>
                 </a>
             </li>
             <li class="c-sidebar-nav-item">
-                <a class="c-sidebar-nav-link" href="/suppliers/">
+                <a class="c-sidebar-nav-link" href="{{route('supplier.index')}}">
                     <i class="c-sidebar-nav-icon cil-speedometer"></i> Suppier
                     <span class="badge badge-primary">NEW</span>
                 </a>
             </li>
             <li class="c-sidebar-nav-item">
-                <a class="c-sidebar-nav-link" href="/transactions/">
+                <a class="c-sidebar-nav-link" href="{{route('transaction.index')}}">
                     <i class="c-sidebar-nav-icon cil-speedometer"></i> Transactions
                     <span class="badge badge-primary">NEW</span>
                 </a>
             </li>
             <li class="c-sidebar-nav-item">
-                <a class="c-sidebar-nav-link" href="/banks/">
+                <a class="c-sidebar-nav-link" href="{{route('bank.index')}}">
                     <i class="c-sidebar-nav-icon cil-speedometer"></i> Banks
                     <span class="badge badge-primary">NEW</span>
                 </a>
             </li>
             <li class="c-sidebar-nav-item">
-                <a class="c-sidebar-nav-link" href="/authors/">
+                <a class="c-sidebar-nav-link" href="{{route('author.index')}}">
                     <i class="c-sidebar-nav-icon cil-speedometer"></i> Authors
                     <span class="badge badge-primary">NEW</span>
                 </a>
             </li>
             <li class="c-sidebar-nav-item">
-                <a class="c-sidebar-nav-link" href="/members/">
+                <a class="c-sidebar-nav-link" href="{{route('member.index')}}">
                     <i class="c-sidebar-nav-icon cil-speedometer"></i> Members
                     <span class="badge badge-primary">NEW</span>
                 </a>
             </li>
             <li class="c-sidebar-nav-item">
-                <a class="c-sidebar-nav-link" href="/memberships/">
+                <a class="c-sidebar-nav-link" href="{{route('membership.index')}}">
                     <i class="c-sidebar-nav-icon cil-speedometer"></i> Memberships
                     <span class="badge badge-primary">NEW</span>
                 </a>

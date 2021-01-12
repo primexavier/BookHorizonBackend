@@ -15,6 +15,7 @@ use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\MembershipController;
 
 /*
 |--------------------------------------------------------------------------
@@ -71,18 +72,18 @@ Route::group(['middleware' => 'AuthAdmin'], function () {
         Route::post('/delete/{user}', [UsersController::class, 'delete'])->name('users.delete');
     });
     Route::group(['prefix' => 'transactions'], function () {
-        Route::get('/', 'TransactionController@index')->name('transactions.index');
-            Route::get('/create', [TransactionController::class, 'index'])->name('transactions.create');
-            Route::post('/create', [TransactionController::class, 'store'])->name('transactions.store');
-            Route::get('/update/{transaction}', [TransactionController::class, 'edit'])->name('transactions.edit');
-            Route::get('/detail/{transaction}',  [TransactionController::class, 'detail'])->name('transactions.detail');
-            Route::post('/update/{transaction}',  [TransactionController::class, 'update'])->name('transactions.update');
-            Route::post('/delete/{transaction}',  [TransactionController::class, 'delete'])->name('transactions.delete');
-            Route::get('/approve-receipt/{transaction}',  [TransactionController::class, 'index'])->name('transactions.approve-receipt');
-            Route::get('/decline-receipt/{transaction}',  [TransactionController::class, 'index'])->name('transactions.decline-receipt');
-            Route::get('/cancel/{transaction}',  [TransactionController::class, 'cancel'])->name('transactions.cancel');
-            Route::post('/add-shipping/{transaction}',  [TransactionController::class, 'index'])->name('transactions.add-shipping');
-            Route::get('/finish/{transaction}',  [TransactionController::class, 'finish'])->name('transactions.finish');
+        Route::get('/', [TransactionController::class, 'index'])->name('transaction.index');
+            Route::get('/create', [TransactionController::class, 'index'])->name('transaction.create');
+            Route::post('/create', [TransactionController::class, 'store'])->name('transaction.store');
+            Route::get('/update/{transaction}', [TransactionController::class, 'edit'])->name('transaction.edit');
+            Route::get('/detail/{transaction}',  [TransactionController::class, 'detail'])->name('transaction.detail');
+            Route::post('/update/{transaction}',  [TransactionController::class, 'update'])->name('transaction.update');
+            Route::post('/delete/{transaction}',  [TransactionController::class, 'delete'])->name('transaction.delete');
+            Route::get('/approve-receipt/{transaction}',  [TransactionController::class, 'index'])->name('transaction.approve-receipt');
+            Route::get('/decline-receipt/{transaction}',  [TransactionController::class, 'index'])->name('transaction.decline-receipt');
+            Route::get('/cancel/{transaction}',  [TransactionController::class, 'cancel'])->name('transaction.cancel');
+            Route::post('/add-shipping/{transaction}',  [TransactionController::class, 'index'])->name('transaction.add-shipping');
+            Route::get('/finish/{transaction}',  [TransactionController::class, 'finish'])->name('transaction.finish');
         });
         Route::group(['prefix' => 'genre'], function () {
             Route::get('/', [GenreController::class, 'index'])->name('genre.index');
